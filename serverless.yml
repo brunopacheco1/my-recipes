@@ -19,10 +19,11 @@ package:
     - .git/**
 
 functions:
-  first:
-    handler: http
+  persist:
+    handler: persistRecipe
     events:
       - http: path
+        method: POST
 
   # NOTE: the following uses an "event" event (pubSub event in this case).
   # Please create the corresponding resources in the Google Cloud
