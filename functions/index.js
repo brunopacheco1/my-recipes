@@ -2,10 +2,11 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const firebase = require('firebase');
 
-admin.initializeApp();
+admin.initializeApp(functions.config().firebase);
+firebase.initializeApp(functions.config().firebase);
 
 exports.addRecipe = functions.https.onRequest((request, response) => {
-    firebase.auth().currentUser.getIdToken().then(uid => {
+    return firebase.auth().currentUser.getIdToken().then(uid => {
         const recipe = request.body;
         recipe.user_id = uid;
         return recipe;
@@ -16,7 +17,17 @@ exports.addRecipe = functions.https.onRequest((request, response) => {
 });
 
 exports.getRecipes = functions.https.onRequest((request, response) => {
-    admin.database().ref('/recipes').once('value')
-    .then(snapshot => response.json(snapshot.val()))
-    .catch(error => response.status(500).json({ error : error.message }));
+    return admin.database().ref('/recipes').once('value')
+    .then(snapshot => {
+        let recipes = [];
+        
+        snapshot.forEach(childSnapshot => {
+            const recipe = childSnapshot.val();
+            recipe.id = childSnapshot.key;
+            recipes.push(recipe);
+        });
+
+        return response.status(200).json({ size: snapshot.numChildren(), result: recipes });
+    })
+    .catch(error => response.status(500).json(error));
 });
