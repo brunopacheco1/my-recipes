@@ -6,13 +6,9 @@ admin.initializeApp();
 firebase.initializeApp();
 
 exports.addRecipe = functions.https.onRequest((request, response) => {
-    return firebase.auth().currentUser.getIdToken().then(uid => {
-        const recipe = request.body;
-        recipe.user_id = uid;
-        return recipe;
-    })
-    .then(recipe => admin.database().ref('/recipes').push(recipe))
-    .then(snapshot => response.json(snapshot.ref.toString()))
+    const recipe = request.body;
+    admin.database().ref('/recipes').push(recipe)
+    .then(snapshot => response.json({ ref: snapshot.ref.toString()}))
     .catch(error => response.status(500).json({ error : error.message }));
 });
 
