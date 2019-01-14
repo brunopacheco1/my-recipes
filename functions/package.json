@@ -1,5 +1,5 @@
 {
-  "name": "my-recipes functions",
+  "name": "my-recipes-functions",
   "description": "My Recipes Cloud Functions for Firebase",
   "scripts": {
     "lint": "eslint .",
