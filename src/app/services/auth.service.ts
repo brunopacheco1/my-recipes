@@ -1,0 +1,50 @@
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { User } from '../models/user.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+
+  private user: User;
+
+  constructor(public afAuth: AngularFireAuth, public router: Router) { }
+
+  public hasScopes(scopes: string[]): boolean {
+    return true;
+  }
+
+  public login(): void {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  }
+
+  public handleAuthentication(): void {
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.user = {
+          uid: user.uid,
+          username: user.displayName
+        }
+      } else {
+        this.user = null;
+        this.router.navigate(['/']);
+      }
+    });
+  }
+
+  public isAuthenticated(): boolean {
+    return !!this.user;
+  }
+  
+  public getUsername(): string {
+    return !!this.user ? this.user.username : '';
+  }
+
+  public logout(): void {
+    this.afAuth.auth.signOut();
+  }
+}
