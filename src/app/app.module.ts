@@ -23,7 +23,8 @@ import {
   MatSelectModule,
   MatSnackBarModule,
   MatTooltipModule,
-  MatChipsModule
+  MatChipsModule,
+  MatBadgeModule
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -34,7 +35,7 @@ import { AuthService } from './services/auth.service';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,9 +65,11 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     FormsModule,
     HttpClientModule,
     MatSnackBarModule,
+    MatBadgeModule,
     MatChipsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFirestoreModule.enablePersistence()
   ],
   exports: [
     MatCardModule,

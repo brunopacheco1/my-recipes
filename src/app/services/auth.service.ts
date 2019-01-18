@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
+import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from '../models/user.model';
 
@@ -19,7 +18,7 @@ export class AuthService {
   }
 
   public login(): void {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
   }
 
   public handleAuthentication(): void {
@@ -41,7 +40,11 @@ export class AuthService {
   }
   
   public getUsername(): string {
-    return !!this.user ? this.user.username : '';
+    return !!this.user ? this.user.username : null;
+  }
+
+  public getUserUid(): string {
+    return !!this.user ? this.user.uid : null;
   }
 
   public logout(): void {

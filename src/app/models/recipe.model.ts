@@ -18,4 +18,7 @@ export interface Recipe {
     description: string;
     ingredients: Ingredient[];
     preparationSteps: string[];
+    imageUrl: string;
+    likes: string[];
+    createdAt: firebase.firestore.Timestamp;
 }

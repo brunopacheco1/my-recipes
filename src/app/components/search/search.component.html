@@ -1,3 +1,13 @@
-<p>
-  search works!
-</p>
+<div *ngIf="(recipes$ | async) as recipes" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="2%" fxLayoutAlign="center">
+  <mat-card *ngFor="let recipe of recipes" class="recipe-card" fxFlex="25%" [matBadge]="recipe.likes.length">
+    <img mat-card-image [src]="recipe.imageUrl" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <mat-card-title>{{ recipe.name }}</mat-card-title>
+      <mat-card-subtitle>{{ recipe.createdAt.toDate() | date: 'shortDate' }}</mat-card-subtitle>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="toggleLike(recipe)">Like</button>
+      <button mat-button>OPEN</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
