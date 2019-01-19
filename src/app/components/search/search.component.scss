@@ -1,9 +1,8 @@
 .recipe-card {
-    margin-top: 30px;
-    max-width: 400px;
+  margin-top: 20px;
+  max-width: 90%;
 }
 
-.recipe-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
+.fill-gap {
+  flex: 1 1 auto;
 }

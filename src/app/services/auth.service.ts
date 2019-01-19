@@ -40,7 +40,7 @@ export class AuthService {
   }
   
   public getUsername(): string {
-    return !!this.user ? this.user.username : null;
+    return !!this.user ? this.user.username.split(/\s/)[0] : null;
   }
 
   public getUserUid(): string {

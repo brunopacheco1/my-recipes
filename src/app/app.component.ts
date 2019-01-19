@@ -1,13 +1,12 @@
-import { Component } from '@angular/core';
-import { AuthService } from './services/auth.service';
+import { Component } from "@angular/core";
+import { AuthService } from "./services/auth.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-
   constructor(public authService: AuthService) {
     authService.handleAuthentication();
   }
@@ -27,7 +26,7 @@ export class AppComponent {
   public isAuthenticated(): boolean {
     return this.authService.isAuthenticated();
   }
-  
+
   get username(): string {
     return this.authService.getUsername();
   }

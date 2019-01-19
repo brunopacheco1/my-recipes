@@ -13,7 +13,12 @@
         <mat-icon class="icon">dashboard</mat-icon>
         <span class="label">Dashboard</span>
       </a>
-      <a mat-list-item *ngIf="isAuthenticated()" (click)="logout()" type="button">
+      <a
+        mat-list-item
+        *ngIf="isAuthenticated()"
+        (click)="logout()"
+        type="button"
+      >
         <mat-icon class="icon">input</mat-icon>
         <span class="label">Logout</span>
       </a>
@@ -33,9 +38,16 @@
             My Recipes
           </a>
         </div>
-        <div fxFlex fxLayout fxLayoutAlign="flex-end" *ngIf="username" fxHide.gt-xs>
+        <div
+          fxFlex
+          fxLayout
+          fxLayoutAlign="flex-end"
+          *ngIf="username"
+          fxHide.gt-xs
+        >
           <div>
-            <mat-icon class="icon">perm_identity</mat-icon><span class="label">{{ username }}</span>
+            <mat-icon class="icon">perm_identity</mat-icon
+            ><span class="label">{{ username }}</span>
           </div>
         </div>
         <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
@@ -53,7 +65,10 @@
               </a>
             </li>
             <li>
-              <a *ngIf="isAuthenticated() && hasScopes(['read:recipes'])" routerLink="/dashboard">
+              <a
+                *ngIf="isAuthenticated() && hasScopes(['read:recipes'])"
+                routerLink="/dashboard"
+              >
                 <mat-icon class="icon">dashboard</mat-icon>
                 <span class="label">Recipes</span>
               </a>
@@ -64,12 +79,11 @@
                 <span class="label">Logout</span>
               </a>
             </li>
-            <li *ngIf="username">
-              <mat-divider></mat-divider>
-            </li>
+            <li *ngIf="username"><mat-divider></mat-divider></li>
             <li *ngIf="username">
               <span>
-                <mat-icon class="icon">perm_identity</mat-icon><span class="label">{{ username }}</span>
+                <mat-icon class="icon">perm_identity</mat-icon
+                ><span class="label">{{ username }}</span>
               </span>
             </li>
           </ul>
@@ -77,9 +91,7 @@
       </mat-toolbar>
     </div>
     <div fxFlex="1 1 100%">
-      <main fxFlex="1 1 100%">
-        <router-outlet></router-outlet>
-      </main>
+      <main fxFlex="1 1 100%"><router-outlet></router-outlet></main>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
