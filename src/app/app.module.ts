@@ -36,8 +36,14 @@ import { AngularFireModule } from "@angular/fire";
 import { environment } from "src/environments/environment";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { RecipeComponent } from "./components/recipe/recipe.component";
 @NgModule({
-  declarations: [AppComponent, SearchComponent, DashboardComponent],
+  declarations: [
+    AppComponent,
+    SearchComponent,
+    DashboardComponent,
+    RecipeComponent
+  ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,

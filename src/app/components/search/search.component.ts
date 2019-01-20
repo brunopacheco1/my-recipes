@@ -22,6 +22,7 @@ export class SearchComponent implements OnInit {
   }
 
   public toggleLike(recipe: Recipe): void {
+    console.log(recipe);
     this.recipesService.toggleLike(recipe);
   }
 

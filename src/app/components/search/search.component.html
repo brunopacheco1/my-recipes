@@ -16,7 +16,7 @@
     <img mat-card-image [src]="recipe.imageUrl" height="200" />
     <div fxLayout="row">
       <div>
-        <mat-card-title>{{ recipe.name }}</mat-card-title>
+        <mat-card-title> {{ recipe.name }} </mat-card-title>
         <mat-card-subtitle>{{
           recipe.createdAt.toDate() | date: "shortDate"
         }}</mat-card-subtitle>
@@ -29,6 +29,13 @@
         color="accent"
       >
         <mat-icon>favorite</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        [routerLink]="['/recipes', recipe._id]"
+        color="accent"
+      >
+        <mat-icon>fullscreen</mat-icon>
       </button>
     </div>
   </mat-card>

@@ -13,12 +13,12 @@ export interface Ingredient {
 
 export interface Recipe {
   _id: string;
-  ownerId: string;
-  name: string;
-  description: string;
-  ingredients: Ingredient[];
-  preparationSteps: string[];
-  imageUrl: string;
-  likes: string[];
   createdAt: firebase.firestore.Timestamp;
+  description: string;
+  imageUrl: string;
+  ingredients: Ingredient[];
+  likes: string[];
+  name: string;
+  ownerId: string;
+  preparationSteps: string[];
 }
