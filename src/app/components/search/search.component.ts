@@ -11,6 +11,7 @@ import { AuthService } from "src/app/services/auth.service";
 })
 export class SearchComponent implements OnInit {
   recipes$: Observable<Recipe[]>;
+  searchInput: string;
 
   constructor(
     private authService: AuthService,
@@ -18,15 +19,18 @@ export class SearchComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.recipes$ = this.recipesService.getRecipes();
+    this.search();
   }
 
   public toggleLike(recipe: Recipe): void {
-    console.log(recipe);
     this.recipesService.toggleLike(recipe);
   }
 
   get isAuthenticated(): boolean {
     return this.authService.isAuthenticated();
+  }
+
+  public search(): void {
+    this.recipes$ = this.recipesService.getRecipes(this.searchInput);
   }
 }

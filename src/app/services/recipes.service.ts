@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Recipe, UnitOfMeasurement, Ingredient } from "../models/recipe.model";
+import { Recipe } from "../models/recipe.model";
 import { Observable, of } from "rxjs";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { AuthService } from "./auth.service";
@@ -16,22 +16,22 @@ export class RecipesService {
     private database: AngularFirestore
   ) {}
 
-  public getRecipes(): Observable<Recipe[]> {
-    return this.database.collection<Recipe>(this.collection).valueChanges();
+  public getRecipes(query: string = ""): Observable<Recipe[]> {
+    return this.database
+      .collection<Recipe>(this.collection, ref =>
+        ref
+          .orderBy("name")
+          .startAt(query)
+          .endAt(query + "\uf8ff")
+          .limit(10)
+      )
+      .valueChanges();
   }
 
   public getRecipe(_id: string): Observable<Recipe> {
     return this.database
       .collection(this.collection)
       .doc<Recipe>(_id)
-      .valueChanges();
-  }
-
-  public getIngredients(_id: string): Observable<Ingredient[]> {
-    return this.database
-      .collection(this.collection)
-      .doc(_id)
-      .collection<Ingredient>(this.ingredientsCollection)
       .valueChanges();
   }
 

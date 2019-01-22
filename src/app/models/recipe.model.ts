@@ -1,24 +1,12 @@
-export enum UnitOfMeasurement {
-  CUPS,
-  ML,
-  G,
-  KG
-}
-
-export interface Ingredient {
-  name: string;
-  quantity: number;
-  unitOfMeasurement: UnitOfMeasurement;
-}
-
 export interface Recipe {
   _id: string;
   createdAt: firebase.firestore.Timestamp;
   description: string;
   imageUrl: string;
-  ingredients: Ingredient[];
+  ingredients: string[];
   likes: string[];
   name: string;
   ownerId: string;
+  ownerName: string;
   preparationSteps: string[];
 }

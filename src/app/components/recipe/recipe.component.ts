@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { RecipesService } from "src/app/services/recipes.service";
 import { Observable, Subscription } from "rxjs";
-import { Recipe, Ingredient } from "src/app/models/recipe.model";
+import { Recipe } from "src/app/models/recipe.model";
 import { AuthService } from "src/app/services/auth.service";
 import { ActivatedRoute } from "@angular/router";
 
@@ -13,7 +13,6 @@ import { ActivatedRoute } from "@angular/router";
 export class RecipeComponent implements OnInit, OnDestroy {
   id: string;
   recipe$: Observable<Recipe>;
-  ingredients$: Observable<Ingredient[]>;
   _paramSubscription$: Subscription;
 
   constructor(
@@ -24,10 +23,9 @@ export class RecipeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this._paramSubscription$ = this.route.params.subscribe(params => {
-      this.id = params["id"]; // (+) converts string 'id' to a number
+      this.id = params["id"];
 
       this.recipe$ = this.recipesService.getRecipe(this.id);
-      this.ingredients$ = this.recipesService.getIngredients(this.id);
     });
   }
 
@@ -36,7 +34,6 @@ export class RecipeComponent implements OnInit, OnDestroy {
   }
 
   public toggleLike(recipe: Recipe): void {
-    console.log(recipe);
     this.recipesService.toggleLike(recipe);
   }
 

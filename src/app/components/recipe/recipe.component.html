@@ -1,25 +1,21 @@
 <div class="recipe-container" *ngIf="(recipe$ | async) as recipe">
   <mat-card>
-    <img [src]="recipe.imageUrl" class="recipe-image" />
     <mat-card-title>{{ recipe.name }}</mat-card-title>
     <mat-card-subtitle>
-      {{ recipe.createdAt.toDate() | date: "shortDate" }}
+      Shared at {{ recipe.createdAt.toDate() | date: "shortDate" }} by
+      {{ recipe.ownerName }}
     </mat-card-subtitle>
     <mat-card-content>
-      <div>{{ recipe.description }}</div>
-      <ul *ngIf="(ingredients$ | async) as ingredients">
-        <ol *ngFor="let ingredient of ingredients">
-          {{
-            ingredient.name
-          }}
-        </ol>
-      </ul>
+      <img [src]="recipe.imageUrl" class="recipe-image" />
+      <h3>ingredients</h3>
       <ul>
-        <ol *ngFor="let preparationStep of recipe.preparationSteps">
-          {{
-            preparationStep
-          }}
-        </ol>
+        <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
+      </ul>
+      <h3>Preparation Steps</h3>
+      <ul>
+        <li *ngFor="let preparationStep of recipe.preparationSteps">
+          {{ preparationStep }}
+        </li>
       </ul>
     </mat-card-content>
   </mat-card>
