@@ -24,10 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {
     authService.handleAuthentication();
 
-    this.matIconRegistry.addSvgIcon(
-      "cooking",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/cooking.svg")
-    );
+    this.registerIcons();
   }
 
   public hasScopes(scopes: string[]): boolean {
@@ -70,5 +67,18 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.watcher$.unsubscribe();
+  }
+
+  private registerIcons(): void {
+    const icons = ["cooking", "dessert", "dish", "hot_pot", "recipe"];
+
+    icons.forEach(icon =>
+      this.matIconRegistry.addSvgIcon(
+        icon,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          `../assets/${icon}.svg`
+        )
+      )
+    );
   }
 }

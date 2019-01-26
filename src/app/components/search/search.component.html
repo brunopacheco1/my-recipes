@@ -17,36 +17,25 @@
   fxLayoutGap.xs="0"
   fxLayoutAlign="center center"
 >
-  <mat-card
-    *ngFor="let recipe of recipes"
-    class="recipe-card"
-    fxFlex="30%"
-    [matBadge]="recipe.likes.length"
-  >
+  <mat-card *ngFor="let recipe of recipes" class="recipe-card" fxFlex="30%">
+    <mat-card-title>
+      <span><mat-icon [svgIcon]="recipe.type"></mat-icon></span>
+      <span>{{ recipe.name }}</span>
+    </mat-card-title>
     <img mat-card-image [src]="recipe.imageUrl" height="200" />
-    <div fxLayout="row">
-      <div>
-        <mat-card-title> {{ recipe.name }} </mat-card-title>
-        <mat-card-subtitle>{{
-          recipe.createdAt.toDate() | date: "shortDate"
-        }}</mat-card-subtitle>
-      </div>
-      <div class="fill-gap"></div>
+    <mat-card-actions>
       <button
-        mat-icon-button
+        mat-button
         (click)="toggleLike(recipe)"
         *ngIf="isAuthenticated"
-        color="accent"
+        [color]="toggleButtonColor(recipe)"
       >
-        <mat-icon>favorite</mat-icon>
+        <mat-icon>favorite</mat-icon>LIKE
       </button>
-      <button
-        mat-icon-button
-        [routerLink]="['/recipes', recipe._id]"
-        color="accent"
-      >
-        <mat-icon>fullscreen</mat-icon>
+
+      <button mat-button [routerLink]="['/recipes', recipe._id]" color="accent">
+        <mat-icon>fullscreen</mat-icon>OPEN
       </button>
-    </div>
+    </mat-card-actions>
   </mat-card>
 </div>

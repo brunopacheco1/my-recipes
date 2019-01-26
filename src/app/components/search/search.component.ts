@@ -26,6 +26,12 @@ export class SearchComponent implements OnInit {
     this.recipesService.toggleLike(recipe);
   }
 
+  public toggleButtonColor(recipe: Recipe): string {
+    return recipe.likes.includes(this.authService.getUserUid())
+      ? "warn"
+      : "accent";
+  }
+
   get isAuthenticated(): boolean {
     return this.authService.isAuthenticated();
   }

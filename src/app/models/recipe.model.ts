@@ -9,4 +9,5 @@ export interface Recipe {
   ownerId: string;
   ownerName: string;
   preparationSteps: string[];
+  type: string;
 }
