@@ -1,17 +1,16 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { auth } from 'firebase/app';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { User } from '../models/user.model';
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { auth } from "firebase/app";
+import { AngularFireAuth } from "@angular/fire/auth";
+import { User } from "../models/user.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AuthService {
-
   private user: User;
 
-  constructor(public afAuth: AngularFireAuth, public router: Router) { }
+  constructor(public afAuth: AngularFireAuth, public router: Router) {}
 
   public hasScopes(scopes: string[]): boolean {
     return true;
@@ -26,11 +25,12 @@ export class AuthService {
       if (user) {
         this.user = {
           uid: user.uid,
-          username: user.displayName
-        }
+          username: user.displayName,
+          profileImage: user.photoURL
+        };
       } else {
         this.user = null;
-        this.router.navigate(['/']);
+        this.router.navigate(["/"]);
       }
     });
   }
@@ -38,9 +38,13 @@ export class AuthService {
   public isAuthenticated(): boolean {
     return !!this.user;
   }
-  
+
   public getUsername(): string {
     return !!this.user ? this.user.username.split(/\s/)[0] : null;
+  }
+
+  public getProfileImage(): string {
+    return !!this.user ? this.user.profileImage : null;
   }
 
   public getUserUid(): string {

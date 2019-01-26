@@ -5,8 +5,8 @@
       Shared at {{ recipe.createdAt.toDate() | date: "shortDate" }} by
       {{ recipe.ownerName }}
     </mat-card-subtitle>
+    <img mat-card-image [src]="recipe.imageUrl" />
     <mat-card-content>
-      <img [src]="recipe.imageUrl" class="recipe-image" />
       <h3>ingredients</h3>
       <ul>
         <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>

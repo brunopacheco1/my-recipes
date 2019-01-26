@@ -4,8 +4,21 @@ mat-sidenav {
   height: 100%;
 }
 
+mat-sidenav-content {
+  display: flex;
+  flex-flow: column;
+}
+
+.components-container {
+  height: 100%;
+}
+
 mat-sidenav {
   width: 250px;
+}
+
+.fill-gap {
+  flex: 1 1 auto;
 }
 
 a {
@@ -40,4 +53,21 @@ a:active {
   line-height: 30px;
   margin: 0;
   width: 85%;
+}
+
+.icon-credits {
+  font-size: 10px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.app-name {
+  margin-left: 10px;
+}
+
+.user-avatar {
+  border-radius: 50% 50% 50% 50%;
+  width: 32px;
+  height: 32px;
+  margin-right: 5px;
 }
