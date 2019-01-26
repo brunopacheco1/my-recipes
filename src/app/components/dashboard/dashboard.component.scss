@@ -1,0 +1,40 @@
+.content {
+  height: 100%;
+}
+
+.mat-table {
+  overflow: auto;
+}
+
+.mat-column-name {
+  max-width: 200px;
+}
+
+.mat-column-update,
+.mat-column-delete {
+  max-width: 50px;
+}
+
+a {
+  cursor: pointer;
+}
+
+.spinner-container {
+  height: 360px;
+  width: 390px;
+  transform-origin: center center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.spinner-container mat-spinner {
+  margin: 130px auto 0 auto;
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}

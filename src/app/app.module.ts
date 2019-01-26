@@ -37,12 +37,14 @@ import { environment } from "src/environments/environment";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { RecipeComponent } from "./components/recipe/recipe.component";
+import { RecipeDialogComponent } from "./components/recipe-dialog/recipe-dialog.component";
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
     DashboardComponent,
-    RecipeComponent
+    RecipeComponent,
+    RecipeDialogComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -81,6 +83,7 @@ import { RecipeComponent } from "./components/recipe/recipe.component";
     MatInputModule,
     MatSelectModule
   ],
+  entryComponents: [RecipeDialogComponent],
   providers: [RecipesService, AuthService],
   bootstrap: [AppComponent]
 })

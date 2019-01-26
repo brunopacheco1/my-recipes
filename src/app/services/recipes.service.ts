@@ -28,11 +28,33 @@ export class RecipesService {
       .valueChanges();
   }
 
+  public listAll(pageIndex: number, pageSize: number): Observable<Recipe[]> {
+    return this.database
+      .collection<Recipe>(this.collection, ref =>
+        ref
+          .where("ownerId", "==", this.authService.getUserUid())
+          .orderBy("name")
+      )
+      .valueChanges();
+  }
+
   public getRecipe(_id: string): Observable<Recipe> {
     return this.database
       .collection(this.collection)
       .doc<Recipe>(_id)
       .valueChanges();
+  }
+
+  public deleteRecipe(_id: string): Observable<void> {
+    return of();
+  }
+
+  public addRecipe(recipe: Recipe): Observable<void> {
+    return of();
+  }
+
+  public updateRecipe(recipe: Recipe): Observable<void> {
+    return of();
   }
 
   public toggleLike(recipe: Recipe): void {
