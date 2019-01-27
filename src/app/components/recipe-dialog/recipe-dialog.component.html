@@ -10,95 +10,13 @@
         [(ngModel)]="data.recipe.name"
         name="name"
       />
-      <mat-hint>Ex: Oficina do Zé</mat-hint>
-      <mat-error *ngIf="!validName">
-        Por favor, informe um endereço válido
+      <mat-error *ngIf="!data.recipe.name">
+        Please, insert a valid name
       </mat-error>
     </mat-form-field>
     <br />
-    <mat-form-field>
-      <input
-        matInput
-        placeholder="Endereço"
-        required
-        [(ngModel)]="data.recipe.vicinity"
-        name="vicinity"
-      />
-      <mat-hint>Ex: Rua das Marrecas, 51, Centro, Rio de Janeiro</mat-hint>
-      <mat-error *ngIf="!validVicinity">
-        Por favor, informe um endereço válido
-      </mat-error>
-    </mat-form-field>
+    <button mat-raised-button (click)="onSubmit()" color="primary">Save</button>
     <br />
-    <mat-form-field>
-      <input
-        matInput
-        placeholder="Telefone"
-        required
-        [(ngModel)]="data.recipe.phone"
-        name="phone"
-      />
-      <mat-hint>Ex: +5521912341234</mat-hint>
-      <mat-error *ngIf="!validPhone">
-        Por favor, informe um telefone válido
-      </mat-error>
-    </mat-form-field>
-    <br />
-    <mat-form-field>
-      <input
-        matInput
-        placeholder="Email"
-        [(ngModel)]="data.recipe.email"
-        name="email"
-      />
-      <mat-hint>Ex: teste@teste.com</mat-hint>
-      <mat-error *ngIf="!validEmail">
-        Por favor, informe um email válido
-      </mat-error>
-    </mat-form-field>
-    <br />
-    <mat-form-field>
-      <input
-        matInput
-        placeholder="Localização"
-        required
-        [(ngModel)]="data.recipe.location"
-        name="location"
-      />
-      <mat-hint>Ex: -20,134.224</mat-hint>
-      <mat-error *ngIf="!validLocation">
-        Por favor, informe uma localização válida
-      </mat-error>
-    </mat-form-field>
-    <br />
-    <mat-form-field>
-      <mat-chip-list #chipList>
-        <mat-chip
-          *ngFor="let service of services"
-          [selectable]="selectable"
-          [removable]="removable"
-          (removed)="removeService(service)"
-        >
-          {{ service.name }}
-          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-        </mat-chip>
-        <input
-          placeholder="Serviços"
-          [matChipInputFor]="chipList"
-          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-          [matChipInputAddOnBlur]="addOnBlur"
-          (matChipInputTokenEnd)="addService($event)"
-        />
-      </mat-chip-list>
-    </mat-form-field>
-    <br />
-    <span>Horário de Funcionamento</span> <br />
-    <button mat-raised-button (click)="onSubmit()" color="primary">
-      Salvar
-    </button>
-    <br />
-    <button mat-raised-button (click)="onNoClick()" color="warn">
-      Cancelar
-    </button>
+    <button mat-raised-button (click)="onNoClick()" color="warn">Cancel</button>
   </form>
 </div>
