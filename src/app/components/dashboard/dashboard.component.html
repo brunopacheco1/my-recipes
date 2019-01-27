@@ -1,4 +1,7 @@
 <div fxFlexFill fxLayout="column" class="content">
+  <div class="spinner-container" *ngIf="(dataSource.loading$ | async)">
+    <mat-spinner></mat-spinner>
+  </div>
   <div>
     <mat-toolbar>
       <span>Recipes</span> <span class="fill-remaining-space"></span>
@@ -15,7 +18,7 @@
   <div fxFlex="1 1 100%">
     <mat-table fxFlex="1 1 100%" #table [dataSource]="dataSource">
       <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="update">
@@ -47,13 +50,5 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
     </mat-table>
-  </div>
-  <div>
-    <mat-paginator
-      [length]="dataSource.totalSize"
-      [pageSize]="10"
-      [pageSizeOptions]="[10, 20, 50]"
-      showFirstLastButtons
-    ></mat-paginator>
   </div>
 </div>

@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { DataSource } from "@angular/cdk/table";
 import { Observable, BehaviorSubject } from "rxjs";
-import { MatDialog, MatSnackBar, MatPaginator } from "@angular/material";
+import { MatDialog, MatSnackBar } from "@angular/material";
 import { RecipeDialogComponent } from "../recipe-dialog/recipe-dialog.component";
-import { finalize } from "rxjs/operators";
 import { CollectionViewer } from "@angular/cdk/collections";
 import { RecipesService } from "src/app/services/recipes.service";
 import { Recipe } from "src/app/models/recipe.model";
@@ -27,15 +26,18 @@ export class RecipeDataSource extends DataSource<Recipe> {
     this.loadingSubject.complete();
   }
 
-  public totalSize = 10;
+  public totalSize = 0;
 
-  loadRecipes(filter = "", pageIndex = 0, pageSize = 10) {
+  loadRecipes(pageIndex = 0, pageSize = 10) {
     this.loadingSubject.next(true);
 
     this.recipesService
-      .listAll(pageIndex, pageSize)
-      .pipe(finalize(() => this.loadingSubject.next(false)))
-      .subscribe(recipes => this.recipesSubject.next(recipes));
+      .listAll(this.totalSize + (pageIndex + 1) * pageSize)
+      .subscribe(recipes => {
+        this.totalSize = recipes.length;
+        this.loadingSubject.next(false);
+        this.recipesSubject.next(recipes);
+      });
   }
 }
 
@@ -47,8 +49,6 @@ export class RecipeDataSource extends DataSource<Recipe> {
 export class DashboardComponent implements OnInit {
   displayedColumns = ["name", "update", "delete"];
   dataSource = new RecipeDataSource(this.recipesService);
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
     this.dataSource = new RecipeDataSource(this.recipesService);
@@ -114,16 +114,11 @@ export class DashboardComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.paginator.page.subscribe(() => this.loadPage());
     this.loadPage();
   }
 
   loadPage() {
-    this.dataSource.loadRecipes(
-      "",
-      this.paginator.pageIndex,
-      this.paginator.pageSize
-    );
+    this.dataSource.loadRecipes();
   }
 
   get hasPermissions(): boolean {

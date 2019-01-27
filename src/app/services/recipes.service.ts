@@ -28,12 +28,13 @@ export class RecipesService {
       .valueChanges();
   }
 
-  public listAll(pageIndex: number, pageSize: number): Observable<Recipe[]> {
+  public listAll(pageSize: number): Observable<Recipe[]> {
     return this.database
       .collection<Recipe>(this.collection, ref =>
         ref
           .where("ownerId", "==", this.authService.getUserUid())
           .orderBy("name")
+          .limit(pageSize)
       )
       .valueChanges();
   }
