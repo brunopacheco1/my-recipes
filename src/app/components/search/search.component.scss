@@ -24,12 +24,12 @@
 
 .recipes-container {
   padding-left: 10px;
+  padding-bottom: 10px;
 }
 
 @media screen and (max-width: 599px) {
   .recipes-container {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 10px;
   }
 
   .recipe-card {
