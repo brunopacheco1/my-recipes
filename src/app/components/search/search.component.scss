@@ -1,8 +1,3 @@
-.recipe-card {
-  margin-top: 20px;
-  max-width: 90%;
-}
-
 .fill-gap {
   flex: 1 1 auto;
 }
@@ -20,5 +15,24 @@
     border: none;
     width: 100%;
     margin-right: 6px;
+  }
+}
+
+.recipe-card {
+  margin-top: 10px;
+}
+
+.recipes-container {
+  padding-left: 10px;
+}
+
+@media screen and (max-width: 599px) {
+  .recipes-container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .recipe-card {
+    margin-top: 0px;
   }
 }
