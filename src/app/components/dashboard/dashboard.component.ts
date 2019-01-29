@@ -81,12 +81,14 @@ export class DashboardComponent implements OnInit {
             ingredients: [],
             name: "",
             preparationSteps: [],
+            likes: [],
             type: ""
           }
         }
       });
       dialogRef.componentInstance.saveAction.subscribe(result => {
         this.recipesService.addRecipe(result.data).subscribe(response => {
+          console.log(response);
           this.loadPage();
           dialogRef.close();
         });
@@ -100,7 +102,9 @@ export class DashboardComponent implements OnInit {
         width: "600px",
         data: {
           title: "Updating Recipe",
-          recipe,
+          recipe: {
+            ...recipe
+          },
           update: true
         }
       });

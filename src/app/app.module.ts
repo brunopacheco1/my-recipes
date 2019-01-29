@@ -26,7 +26,7 @@ import {
   MatBadgeModule
 } from "@angular/material";
 import { HttpClientModule } from "@angular/common/http";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { RecipesService } from "./services/recipes.service";
@@ -65,6 +65,7 @@ import { RecipeDialogComponent } from "./components/recipe-dialog/recipe-dialog.
     MatSelectModule,
     MatTooltipModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,
     MatBadgeModule,

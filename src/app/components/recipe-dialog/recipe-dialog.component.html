@@ -4,19 +4,62 @@
     <mat-form-field>
       <input
         matInput
-        placeholder="Nome"
+        placeholder="Name"
         type="text"
-        required
         [(ngModel)]="data.recipe.name"
         name="name"
+        [formControl]="viewModel.name"
       />
-      <mat-error *ngIf="!data.recipe.name">
+      <mat-error *ngIf="viewModel.name.invalid">
         Please, insert a valid name
       </mat-error>
     </mat-form-field>
     <br />
-    <button mat-raised-button (click)="onSubmit()" color="primary">Save</button>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Description"
+        type="text"
+        [(ngModel)]="data.recipe.description"
+        name="description"
+        [formControl]="viewModel.description"
+      />
+      <mat-error *ngIf="viewModel.description.invalid">
+        Please, insert a valid description
+      </mat-error>
+    </mat-form-field>
     <br />
-    <button mat-raised-button (click)="onNoClick()" color="warn">Cancel</button>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Image URL"
+        type="text"
+        [(ngModel)]="data.recipe.imageUrl"
+        name="imageUrl"
+        [formControl]="viewModel.imageUrl"
+      />
+      <mat-error *ngIf="viewModel.imageUrl.invalid">
+        Please, insert a valid image URL
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+      <mat-select
+        placeholder="Meal Type"
+        [(ngModel)]="data.recipe.type"
+        name="type"
+        [formControl]="viewModel.type"
+      >
+        <mat-option value="dessert">Dessert</mat-option>
+        <mat-option value="dish">Dish</mat-option>
+      </mat-select>
+      <mat-error *ngIf="viewModel.type.invalid">
+        Please, select one type
+      </mat-error>
+    </mat-form-field>
   </form>
 </div>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="onSubmit()" color="primary">Save</button>
+  <button mat-raised-button (click)="onNoClick()" color="warn">Cancel</button>
+</mat-dialog-actions>

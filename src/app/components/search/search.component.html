@@ -20,7 +20,7 @@
   <mat-card *ngFor="let recipe of recipes" class="recipe-card" fxFlex="30%">
     <mat-card-title>
       <span><mat-icon [svgIcon]="recipe.type"></mat-icon></span>
-      <span>{{ recipe.name }}</span>
+      <span class="recipe-name">{{ recipe.name }}</span>
     </mat-card-title>
     <img mat-card-image [src]="recipe.imageUrl" height="200" />
     <mat-card-actions>
