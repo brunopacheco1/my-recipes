@@ -1,45 +1,53 @@
-<mat-toolbar class="search-container">
-  <input
-    type="text"
-    placeholder="Find your favorite recipe"
-    [(ngModel)]="searchInput"
-  />
-  <button mat-flat-button (click)="search()" color="accent">
-    <mat-icon>search</mat-icon>
-  </button>
-</mat-toolbar>
-<div
-  *ngIf="(recipes$ | async) as recipes"
-  fxLayout="row wrap"
-  fxLayout.lt-sm="column"
-  fxLayoutGap="10px"
-  fxLayoutAlign="flex-start"
-  class="recipes-container"
->
-  <mat-card
-    *ngFor="let recipe of recipes"
-    fxFlex="0 1 calc(33.3% - 10px)"
-    fxFlex.lt-md="0 1 calc(50% - 10px)"
-    class="recipe-card"
+<div fxFlexFill fxLayout="column">
+  <div>
+    <mat-toolbar class="search-container">
+      <input
+        type="text"
+        placeholder="Find your favorite recipe"
+        [(ngModel)]="searchInput"
+      />
+      <button mat-flat-button (click)="search()" color="accent">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-toolbar>
+  </div>
+  <div
+    *ngIf="(recipes$ | async) as recipes"
+    fxLayout="row wrap"
+    fxLayout.lt-sm="column"
+    fxLayoutGap="10px"
+    fxLayoutAlign="flex-start"
+    class="recipes-container"
   >
-    <mat-card-title>
-      <span><mat-icon [svgIcon]="recipe.type"></mat-icon></span>
-      <span class="recipe-name">{{ recipe.name }}</span>
-    </mat-card-title>
-    <img mat-card-image [src]="recipe.imageUrl" />
-    <mat-card-actions>
-      <button
-        mat-button
-        (click)="toggleLike(recipe)"
-        *ngIf="isAuthenticated"
-        [color]="toggleButtonColor(recipe)"
-      >
-        <mat-icon>favorite</mat-icon>LIKE
-      </button>
+    <mat-card
+      *ngFor="let recipe of recipes"
+      fxFlex="0 1 calc(33.3% - 10px)"
+      fxFlex.lt-md="0 1 calc(50% - 10px)"
+      class="recipe-card"
+    >
+      <mat-card-title>
+        <span><mat-icon [svgIcon]="recipe.type"></mat-icon></span>
+        <span class="recipe-name">{{ recipe.name }}</span>
+      </mat-card-title>
+      <img mat-card-image [src]="recipe.imageUrl" />
+      <mat-card-actions>
+        <button
+          mat-button
+          (click)="toggleLike(recipe)"
+          *ngIf="isAuthenticated"
+          [color]="toggleButtonColor(recipe)"
+        >
+          <mat-icon>favorite</mat-icon>LIKE
+        </button>
 
-      <button mat-button [routerLink]="['/recipes', recipe._id]" color="accent">
-        <mat-icon>fullscreen</mat-icon>OPEN
-      </button>
-    </mat-card-actions>
-  </mat-card>
+        <button
+          mat-button
+          [routerLink]="['/recipes', recipe._id]"
+          color="accent"
+        >
+          <mat-icon>fullscreen</mat-icon>OPEN
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

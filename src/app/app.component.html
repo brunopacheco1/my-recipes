@@ -33,7 +33,7 @@
       </a>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content fxLayout="column">
     <div>
       <mat-toolbar color="primary">
         <button fxHide.gt-xs mat-icon-button (click)="sidenav.toggle()">
@@ -44,8 +44,8 @@
         <span class="app-name">My Recipes</span>
       </mat-toolbar>
     </div>
-    <div class="components-container">
-      <main><router-outlet></router-outlet></main>
+    <div fxFlex="1 1 100%">
+      <main fxFlex="1 1 100%"><router-outlet></router-outlet></main>
     </div>
     <div class="icon-credits">
       Icons made by
