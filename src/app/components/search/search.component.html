@@ -25,9 +25,9 @@
       fxFlex.lt-md="0 1 calc(50% - 10px)"
       class="recipe-card"
     >
-      <mat-card-title>
-        <span><mat-icon [svgIcon]="recipe.type"></mat-icon></span>
-        <span class="recipe-name">{{ recipe.name }}</span>
+      <mat-card-title class="section-header">
+        <mat-icon [svgIcon]="recipe.type"></mat-icon>
+        {{ recipe.name }}
       </mat-card-title>
       <img mat-card-image [src]="recipe.imageUrl" />
       <mat-card-actions>

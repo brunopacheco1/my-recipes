@@ -9,7 +9,8 @@ import { RecipeFormViewModel } from "./recipe-form.view-model";
 })
 export class RecipeDialogComponent {
   viewModel = new RecipeFormViewModel();
-
+  preparationStep: string;
+  ingredient: string;
   public saveAction: EventEmitter<any> = new EventEmitter();
   public updateAction: EventEmitter<any> = new EventEmitter();
 
@@ -30,5 +31,34 @@ export class RecipeDialogComponent {
         this.saveAction.emit({ data: this.data.recipe });
       }
     }
+  }
+
+  addPreparationStep(): void {
+    if (!!this.preparationStep) {
+      this.data.recipe.preparationSteps =
+        this.data.recipe.preparationSteps || [];
+      this.data.recipe.preparationSteps.push(this.preparationStep);
+      this.preparationStep = null;
+    }
+  }
+
+  removePreparationStep(preparationStep: string): void {
+    this.data.recipe.preparationSteps = this.data.recipe.preparationSteps.filter(
+      el => el !== preparationStep
+    );
+  }
+
+  addIngredient(): void {
+    if (!!this.ingredient) {
+      this.data.recipe.ingredients = this.data.recipe.ingredients || [];
+      this.data.recipe.ingredients.push(this.ingredient);
+      this.ingredient = null;
+    }
+  }
+
+  removeIngredient(ingredient: string): void {
+    this.data.recipe.ingredients = this.data.recipe.ingredients.filter(
+      el => el !== ingredient
+    );
   }
 }

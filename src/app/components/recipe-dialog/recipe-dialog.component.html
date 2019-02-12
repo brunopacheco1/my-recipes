@@ -57,6 +57,63 @@
         Please, select one type
       </mat-error>
     </mat-form-field>
+    <br />
+    <div class="nested-field-container">
+      <label>Preparation Steps</label>
+      <div class="nested-field">
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            [(ngModel)]="preparationStep"
+            name="preparationStep"
+          />
+        </mat-form-field>
+        <button mat-icon-button (click)="addPreparationStep()" color="warn">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <ul class="nested-value">
+        <li *ngFor="let preparationStep of data.recipe.preparationSteps">
+          {{ preparationStep }}
+          <button
+            mat-icon-button
+            (click)="removePreparationStep(preparationStep)"
+            color="warn"
+          >
+            <mat-icon>remove</mat-icon>
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div class="nested-field-container">
+      <label>Ingredients</label>
+      <div class="nested-field">
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            [(ngModel)]="ingredient"
+            name="ingredient"
+          />
+        </mat-form-field>
+        <button mat-icon-button (click)="addIngredient()" color="warn">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <ul class="nested-value">
+        <li *ngFor="let ingredient of data.recipe.ingredients">
+          {{ ingredient }}
+          <button
+            mat-icon-button
+            (click)="removeIngredient(ingredient)"
+            color="warn"
+          >
+            <mat-icon>remove</mat-icon>
+          </button>
+        </li>
+      </ul>
+    </div>
   </form>
 </div>
 <mat-dialog-actions>

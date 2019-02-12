@@ -6,3 +6,16 @@
 .recipe-form > * {
   width: 100%;
 }
+
+.nested-field-container {
+  display: flex;
+  flex-flow: column;
+
+  .nested-field {
+    display: flex;
+
+    mat-form-field {
+      width: 100%;
+    }
+  }
+}
